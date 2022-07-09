@@ -1,4 +1,22 @@
-vim.cmd[[set completeopt=menu,menuone,noselect]]
+--" gray
+vim.cmd[[highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]]
+--" blue
+vim.cmd[[highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6]]
+vim.cmd[[highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6]]
+--" light blue
+vim.cmd[[highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE]]
+vim.cmd[[highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE]]
+vim.cmd[[highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE]]
+--" pink
+vim.cmd[[highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0]]
+vim.cmd[[highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0]]
+--" front
+vim.cmd[[highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4]]
+vim.cmd[[highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4]]
+vim.cmd[[highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4]]
+
+
+
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -6,16 +24,40 @@ end
 
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-  -- Setup nvim-cmp.
+end  -- Setup nvim-cmp.
   local cmp = require'cmp'
-
+local lspkind = require('lspkind')
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
+    },
+
+
+    formatting = {
+    format = lspkind.cmp_format({
+        mode = "symbol_text",
+        preset = "default", 
+      menu = ({
+      buffer = "",
+      nvim_lsp = "",
+      luasnip = "",
+      nvim_lua = "",
+      latex_symbols = "",
+    }),
+      
+        }),
+    },
+
+
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -23,7 +65,8 @@ end
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-["<Tab>"] = cmp.mapping(function(fallback)
+          
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif vim.fn["vsnip#available"](1) == 1 then
@@ -41,10 +84,18 @@ end
       elseif vim.fn["vsnip#jumpable"](-1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
       end
-    end, { "i", "s" }),    }),
+    end, { "i", "s" }),
+
+
+
+    }),
+
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
     })
@@ -78,12 +129,9 @@ end
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---  require('lspconfig')['sumneko_lua'].setup {
+--  require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 --    capabilities = capabilities
---  }
-  
-  require('lspconfig')['jedi_language_server'].setup {
-    capabilities = capabilities
-  }
+ -- }
+  require "plugins.lspc"

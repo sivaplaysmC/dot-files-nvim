@@ -1,3 +1,4 @@
+
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
@@ -25,6 +26,8 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+
+keymap("n", "<leader>m", ":silent !python %<cr>", opts)
 keymap("n", "<leader>h", ":noh<cr>", opts)
 keymap("n", "<leader>e", ":Neotree left toggle<cr>", opts)
 keymap("n", "<leader>w", ":w!<cr>", opts)
@@ -77,3 +80,7 @@ keymap("n", "<leader>ff", ":Telescope find_files<cr>", opts)
 keymap("n", "<leader>fw", ":Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fo", ":Telescope oldfiles<cr>", opts)
 keymap("n", "<leader>ft", ":Telescope colorscheme<cr>", opts)
+keymap("n", "<leader>bb", ":Telescope buffers<cr>", opts)
+
+-- comments
+-- keymap("n", "<leader>/", ":lua require('Comment.api').toggle_current_linewise()", opts)

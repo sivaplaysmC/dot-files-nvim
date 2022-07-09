@@ -49,6 +49,8 @@ return packer.startup(function(use)
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
 
+  use "onsails/lspkind.nvim"
+
   use "Shatur/neovim-ayu"
   -- cmp plugins
 use 'hrsh7th/cmp-nvim-lsp'
@@ -61,7 +63,10 @@ use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/cmp-vsnip'
 use 'hrsh7th/vim-vsnip'
 
-
+use "folke/tokyonight.nvim"
+-- Using Packer
+use 'ful1e5/onedark.nvim'
+--use 'navarasu/onedark.nvim'
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
@@ -71,6 +76,11 @@ use 'hrsh7th/vim-vsnip'
   use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use "tomasiser/vim-code-dark"
+  
+  use "windwp/nvim-autopairs"
+  use 'numToStr/Comment.nvim'
+  use "catppuccin/nvim"
 
   -- Treesitter
   use {
@@ -314,3 +324,4 @@ use {
     require("packer").sync()
   end
 end)
+
