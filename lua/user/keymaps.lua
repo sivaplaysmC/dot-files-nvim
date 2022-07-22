@@ -83,4 +83,9 @@ keymap("n", "<leader>ft", ":Telescope colorscheme<cr>", opts)
 keymap("n", "<leader>bb", ":Telescope buffers<cr>", opts)
 
 -- comments
--- keymap("n", "<leader>/", ":lua require('Comment.api').toggle_current_linewise()", opts)
+vim.keymap.set("n" , "<leader>/" , '<cmd>lua require("Comment.api").toggle_current_linewise()<cr>')
+-- vim.keymap.set("i" , "<leader>/" , '<cmd>lua require("Comment.api").toggle_current_linewise()<cr>')
+
+vim.keymap.set('x', '<leader>/', '<Plug>(comment_toggle_linewise_visual)')
+
+keymap("" , "<leader><leader>" , "<cmd>HopWord<cr>" , opts)

@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 local servers = { 'pyright'  }
 
 local on_attach = function(client, bufnr)
+    require("nvim-navic").attach(client, bufnr)
     vim.cmd[[TSEnable highlight]]
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap=true, silent=true }

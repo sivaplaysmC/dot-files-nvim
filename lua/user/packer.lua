@@ -46,12 +46,9 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   -- Colorschemes
-  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/darkplus.nvim"
 
   use "onsails/lspkind.nvim"
 
-  use "Shatur/neovim-ayu"
   -- cmp plugins
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-buffer'
@@ -65,9 +62,17 @@ use 'hrsh7th/vim-vsnip'
 
 use "folke/tokyonight.nvim"
 -- Using Packer
-use 'ful1e5/onedark.nvim'
+use {'ful1e5/onedark.nvim' }
+use "glepnir/galaxyline.nvim"
+use "nvim-lualine/lualine.nvim"
+use 'feline-nvim/feline.nvim'
+use  'numToStr/Comment.nvim'
+use {'rcarriga/nvim-dap-ui'}
 --use 'navarasu/onedark.nvim'
-  -- LSP
+use {'mfussenegger/nvim-dap'}
+use {'nvim-telescope/telescope-dap.nvim'}
+use {'mfussenegger/nvim-dap-python'}  
+-- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
@@ -79,14 +84,18 @@ use 'ful1e5/onedark.nvim'
   use "tomasiser/vim-code-dark"
   
   use "windwp/nvim-autopairs"
-  use 'numToStr/Comment.nvim'
   use "catppuccin/nvim"
-
+--  use { "monsonjeremy/onedark.nvim" , run = "require('onedark').setup()"}
+use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
+}
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+use "phaazon/hop.nvim"
 use {
   "nvim-neo-tree/neo-tree.nvim",
     requires = { 
