@@ -191,4 +191,29 @@ maps.t["<C-j>"] = { "<c-\\><c-n><c-w>j", desc = "Terminal down window navigation
 maps.t["<C-k>"] = { "<c-\\><c-n><c-w>k", desc = "Terminal up window navigation" }
 maps.t["<C-l>"] = { "<c-\\><c-n><c-w>l", desc = "Terminal right window naviation" }
 
+-- ->-< my own mappings >-<- --
+maps.n["<C-,>"] = {"zH" , desc = "Scroll Half screen Left"}
+maps.n["<C-.>"] = {"zL" , desc = "Scroll Half screen Right"}
+
+
+maps.n["<A-,>"] = {"zh" , desc = "Scroll screen Left"}
+maps.n["<A-.>"] = {"zl" , desc = "Scroll screen Right"}
+-- keymap("n", "<C-.>", "zL", opts)
+-- keymap("n", "<C-,>", "zH", opts)
+
+-- keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+-- keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+-- keymap("v", "p", '"_dP', opts)
+
+-- keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+-- keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- maps.n["<A-j>"] = { ":m .+1<CR>==gi", desc = "move text downwards" }
+-- maps.n["<A-k>"] = { ":m .+1<CR>==gi", desc = "move text downwards" }
+--
+--
+-- maps.v["<A-j>"] = { ":m .+1<CR>==", desc = "move text downwards" }
+-- maps.v["<A-k>"] = { ":m .-2<CR>==", desc = "move text upwards" }
+maps.v["<"] = { "<gv", desc = "unindent line" }
+
 astronvim.set_mappings(astronvim.user_plugin_opts("mappings", maps))

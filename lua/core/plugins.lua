@@ -4,10 +4,11 @@ local astro_plugins = {
 
   -- Optimiser
   ["lewis6991/impatient.nvim"] = {},
-
+  ["lunarvim/synthwave84.nvim"] = {} ,
   -- Lua functions
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
+  ["onsails/lspkind.nvim"] = {} , 
   -- Popup API
   ["nvim-lua/popup.nvim"] = {},
 
@@ -72,6 +73,7 @@ local astro_plugins = {
     config = function() require "configs.feline" end,
   },
 
+   ["catppuccin/nvim"]  = {as = "catppuccin" } , 
   -- Parenthesis highlighting
   ["p00f/nvim-ts-rainbow"] = { after = "nvim-treesitter" },
 

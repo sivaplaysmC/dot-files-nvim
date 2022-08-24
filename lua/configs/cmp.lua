@@ -1,49 +1,48 @@
+local lspkind = require("lspkind")
 local cmp_status_ok, cmp = pcall(require, "cmp")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not (cmp_status_ok and snip_status_ok) then return end
 local setup = cmp.setup
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "ﰠ",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "פּ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
+vim.cmd[[highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]]
+--" blue
+vim.cmd[[highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6]]
+vim.cmd[[highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6]]
+--" light blue
+vim.cmd[[highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE]]
+vim.cmd[[highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE]]
+vim.cmd[[highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE]]
+--" pink
+vim.cmd[[highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0]]
+vim.cmd[[highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0]]
+--" front
+vim.cmd[[highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4]]
+vim.cmd[[highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4]]
+vim.cmd[[highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4]]
 setup(astronvim.user_plugin_opts("plugins.cmp", {
   preselect = cmp.PreselectMode.None,
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(_, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      return vim_item
-    end,
-  },
+
+
+  
+    formatting = {
+    format = lspkind.cmp_format({
+        mode = "symbol_text",
+        preset = "default", 
+      menu = ({
+      buffer = "[BUFFER]  ",
+      nvim_lsp = "[LSP]  ",
+      luasnip = "[SNIPPET] ",
+      nvim_lua = "[LUA]  ",
+      latex_symbols = "[LATEX]",
+    }),
+      
+        }),
+    },
   snippet = {
     expand = function(args) luasnip.lsp_expand(args.body) end,
   },
@@ -58,11 +57,11 @@ setup(astronvim.user_plugin_opts("plugins.cmp", {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  window = {
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
-  },
+  -- window = {
+  --   documentation = {
+  --     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  --   },
+  -- },
   mapping = {
     ["<Up>"] = cmp.mapping.select_prev_item(),
     ["<Down>"] = cmp.mapping.select_next_item(),

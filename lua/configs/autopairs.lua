@@ -20,7 +20,6 @@ npairs.setup(astronvim.user_plugin_opts("plugins.nvim-autopairs", {
     highlight_grey = "LineNr",
   },
 }))
-
 local rules = astronvim.user_plugin_opts("nvim-autopairs").add_rules
 if vim.tbl_contains({ "function", "table" }, type(rules)) then
   npairs.add_rules(type(rules) == "function" and rules(npairs) or rules)

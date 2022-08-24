@@ -7,3 +7,4 @@ package.loaded["default_theme.lsp"] = nil
 package.loaded["default_theme.others"] = nil
 
 require "default_theme"
+

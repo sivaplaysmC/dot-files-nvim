@@ -1,6 +1,5 @@
 astronvim.vim_opts(astronvim.user_plugin_opts("options", {
   opt = {
-    backspace = vim.opt.backspace + { "nostop" }, -- Don't stop backspace at insert
     clipboard = "unnamedplus", -- Connection to the system clipboard
     completeopt = { "menuone", "noselect" }, -- Options for insert mode completion
     copyindent = true, -- Copy the previous indentation on autoindenting

@@ -1,0 +1,1 @@
+/home/sivaplays/.config/nvim.bak/lua/user/opts.lua
