@@ -19,5 +19,6 @@ else
     end
 
     astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
+    -- require("configs.rainbow")
 
 end

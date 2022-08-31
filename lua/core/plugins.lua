@@ -224,6 +224,7 @@ local astro_plugins = {
     module = { "Comment", "Comment.api" },
     keys = { "gc", "gb", "g<", "g>" },
     config = function() require "configs.Comment" end,
+    commit='fe9bbdb',
   },
 
   -- Indentation
@@ -244,10 +245,26 @@ local astro_plugins = {
     config = function() require "configs.cinnamon" end,
   },
 
-  -- Smooth escaping
+  ['kevinhwang91/rnvimr']={},
+  ['rmehri01/onenord.nvim'] = {},
+
+["kylechui/nvim-surround"] = {
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+        })
+    end
+  },
+
+-- Smooth escaping
   ["max397574/better-escape.nvim"] = {
     event = "InsertCharPre",
-    config = function() require "configs.better_escape" end,
+    config = function() require("better_escape").setup {
+    mapping = {"jk" }, -- a table with mappings to use
+    timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
+    clear_empty_lines = false, -- clear line after escaping if there is only whitespace
+    keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+} end,
   },
 
   -- Get extra JSON schemas

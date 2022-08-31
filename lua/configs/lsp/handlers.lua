@@ -1,8 +1,10 @@
+print("Hi")
 astronvim.lsp = {}
 local user_plugin_opts = astronvim.user_plugin_opts
 local conditional_func = astronvim.conditional_func
 
 astronvim.lsp.on_attach = function(client, bufnr)
+  print("Hi There LSP Attached")
   astronvim.set_mappings(
     user_plugin_opts("lsp.mappings", {
       n = {

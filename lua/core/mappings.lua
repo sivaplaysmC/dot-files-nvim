@@ -12,7 +12,7 @@ maps.n["<leader>h"] = { "<cmd>nohlsearch<cr>", desc = "No Highlight" }
 maps.n["<leader>u"] = { function() astronvim.toggle_url_match() end, desc = "Toggle URL Highlights" }
 maps.n["<leader>fn"] = { "<cmd>enew<cr>", desc = "New File" }
 maps.n["gx"] = { function() astronvim.url_opener() end, desc = "Open the file under cursor with system app" }
-maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
+-- maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 maps.n["Q"] = "<Nop>"
 
@@ -192,12 +192,12 @@ maps.t["<C-k>"] = { "<c-\\><c-n><c-w>k", desc = "Terminal up window navigation" 
 maps.t["<C-l>"] = { "<c-\\><c-n><c-w>l", desc = "Terminal right window naviation" }
 
 -- ->-< my own mappings >-<- --
-maps.n["<C-,>"] = {"zH" , desc = "Scroll Half screen Left"}
-maps.n["<C-.>"] = {"zL" , desc = "Scroll Half screen Right"}
-
-
 maps.n["<A-,>"] = {"zh" , desc = "Scroll screen Left"}
 maps.n["<A-.>"] = {"zl" , desc = "Scroll screen Right"}
+
+
+maps.n["<A-h>"] = {"zH" , desc = "Scroll  Half screen Left"}
+maps.n["<A-l>"] = {"zL" , desc = "Scroll  Half screen Right"}
 -- keymap("n", "<C-.>", "zL", opts)
 -- keymap("n", "<C-,>", "zH", opts)
 
