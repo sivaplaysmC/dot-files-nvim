@@ -47,6 +47,9 @@ local astro_plugins = {
     config = function() require "configs.icons" end,
   },
 
+    ['rmehri01/onenord.nvim'] = {},
+
+
   -- Bufferline
   ["akinsho/bufferline.nvim"] = {
     after = "nvim-web-devicons",
@@ -211,6 +214,7 @@ local astro_plugins = {
 
   -- Commenting
   ["numToStr/Comment.nvim"] = {
+    commit='fe9bbdb',
     module = { "Comment", "Comment.api" },
     keys = { "gc", "gb", "g<", "g>" },
     config = function() require "configs.Comment" end,
@@ -250,6 +254,9 @@ local astro_plugins = {
     event = "BufWritePost",
     config = function() require "configs.session_manager" end,
   },
+
+  ["onsails/lspkind.nvim"] = {}
+
 }
 
 if astronvim.updater.snapshot then

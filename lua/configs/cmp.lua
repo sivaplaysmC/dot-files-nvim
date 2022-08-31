@@ -1,3 +1,4 @@
+local lspkind = require("lspkind")
 local cmp_status_ok, cmp = pcall(require, "cmp")
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not (cmp_status_ok and snip_status_ok) then return end
@@ -37,13 +38,24 @@ end
 
 setup(astronvim.user_plugin_opts("plugins.cmp", {
   preselect = cmp.PreselectMode.None,
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(_, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      return vim_item
-    end,
-  },
+
+
+    formatting = {
+    format = lspkind.cmp_format({
+        mode = "symbol_text",
+        preset = "default", 
+      menu = ({
+        buffer =  "   [BUFFER]",
+        nvim_lsp ="      [LSP]",
+        luasnip = " [SNIPPETS]",
+        nvim_lua =" [NVIM_LUA]",
+  latex_symbols = "    [LATEX]",
+    }),
+      
+        }),
+    },
+
+  
   snippet = {
     expand = function(args) luasnip.lsp_expand(args.body) end,
   },
