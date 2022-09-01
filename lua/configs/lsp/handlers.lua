@@ -1,4 +1,5 @@
 astronvim.lsp = {}
+local util = vim.lsp.util
 local user_plugin_opts = astronvim.user_plugin_opts
 local conditional_func = astronvim.conditional_func
 
@@ -71,6 +72,8 @@ function astronvim.lsp.server_settings(server_name)
   local opts = user_plugin_opts(
     "lsp.server-settings." .. server_name,
     user_plugin_opts("lsp.server-settings." .. server_name, {
+      
+       root_dir = util.find_git_ancestor,
       capabilities = vim.tbl_deep_extend("force", astronvim.lsp.capabilities, server.capabilities or {}),
       flags = vim.tbl_deep_extend("force", astronvim.lsp.flags, server.flags or {}),
     }, true, "configs")

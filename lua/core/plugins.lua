@@ -8,6 +8,11 @@ local astro_plugins = {
   -- Lua functions
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
+  ['tanvirtin/vgit.nvim'] = {
+  config = function ()
+    require("vgit").setup()
+  end
+  },
   -- Popup API
   ["nvim-lua/popup.nvim"] = {},
 

@@ -6,3 +6,5 @@ vim.api.nvim_command(
     -- .. (vim.tbl_contains(vim.fn.getcompletion("", "color"), colorscheme) and colorscheme or "default_theme")
     .. "onenord"
 )
+vim.cmd[[hi BufferLineTabClose guibg=none]]
+vim.cmd[[hi BufferLineTabClose guifg=none]]
